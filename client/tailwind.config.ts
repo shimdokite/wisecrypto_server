@@ -1,5 +1,9 @@
 import type { Config } from 'tailwindcss';
 
+import tokens from './src/styles/tokens';
+
+const { colors, boxShadow } = tokens;
+
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -7,12 +11,9 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    colors,
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
+      boxShadow,
       fontFamily: {
         montserrat: ['var(--montserrat)'],
       },
