@@ -1,17 +1,11 @@
-import Input from './Input';
+import SignInput from './SignInput';
 
 export default function LoginForm() {
   return (
-    <form className="flex flex-col gap-6">
-      <div className="flex flex-col gap-2">
-        <label className="font-montserrat font-medium">Email</label>
-        <Input placeholder="botpablo@gmail.com" />
-      </div>
+    <form className="flex flex-col gap-4">
+      <SignInput children="Email" placeholder="botpablo@gmail.com" />
 
-      <div className="flex flex-col gap-2">
-        <label className="font-montserrat font-medium">Kata Sandi</label>
-        <Input placeholder="Masukkan Kata Sandi" />
-      </div>
+      <SignInput children="Kata Sandi" placeholder="Masukkan Kata Sandi" />
     </form>
   );
 }
