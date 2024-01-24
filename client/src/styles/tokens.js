@@ -28,11 +28,14 @@ const tokens = {
       "1": "#5D5C5D"
     },
     "Gray2": {
-      "2": "#BEBEBE",
+      "1": "#BEBEBE",
     },
     "White": {
       "1": "#FFFFFF",
     },
+    "AquaSpring": {
+      "1": "#E9FCE9"
+    }
   },
   
   boxShadow: {
