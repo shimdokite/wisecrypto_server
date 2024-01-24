@@ -5,3 +5,8 @@
 body {
   background-color: #f7f7f7;
 }
+
+select {
+  color: #5d5c5d;
+  background: url('/assets/icon/select_arrow.svg') no-repeat right 24px center;
+}
