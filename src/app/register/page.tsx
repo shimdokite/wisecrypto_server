@@ -19,8 +19,8 @@ import { signForm } from 'types/data';
 export default function Register() {
   const router = useRouter();
 
-  const goToRegister = () => {
-    router.push('/register');
+  const goToLogin = () => {
+    router.push('/login');
   };
 
   const { next, setNext, values, handleChange, handleSubmit } = useForm({
@@ -82,7 +82,7 @@ export default function Register() {
                   />
                 )}
 
-                <SignBottom role="register" goToPage={goToRegister} />
+                <SignBottom role="register" goToPage={goToLogin} />
               </div>
             </div>
           </div>
