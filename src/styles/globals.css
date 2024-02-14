@@ -36,3 +36,8 @@ input[type='checkbox']:checked {
   background-repeat: no-repeat;
   background-color: #5ede99;
 }
+
+hr {
+  border-width: 0.3px 0px 0px 0px;
+  height: 0.3px;
+}
