@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 export default function Assets() {
-  //TODO: 코인 회사 데이터 json-server 만들기
+  //TODO: 코인 회사 데이터 node 서버 만들기
   const USER_ASSETS = [
     {
       image: '/assets/image/bitcoin.svg',
@@ -11,18 +11,18 @@ export default function Assets() {
       portfolio: '26.46',
       coin: '0.0012',
     },
-    // {
-    //   image: '/assets/image/etherium.svg',
-    //   title: 'ETH',
-    //   name: 'Etherium',
-    //   percent: '-2.1%',
-    //   portfolio: '37.30',
-    //   coin: '0.009',
-    // },
+    {
+      image: '/assets/image/etherium.svg',
+      title: 'ETH',
+      name: 'Etherium',
+      percent: '-2.1%',
+      portfolio: '37.30',
+      coin: '0.009',
+    },
   ];
 
   return USER_ASSETS.map((asset) => (
-    <section className="flex flex-col justify-center items-center bg-White-1 rounded-[10px] px-4 py-4">
+    <section className="h-[119px] flex flex-col justify-center items-center bg-White-1 rounded-[10px] px-[26px] py-4">
       <div className="w-full h-full flex justify-between items-center gap-[25px]">
         <div className="flex items-center gap-1">
           <div className="flex justify-center items-center w-10 h-10 bg-Light-1 rounded-[10px]">
@@ -33,6 +33,7 @@ export default function Assets() {
             <p className="text-Black-1 font-semibold text-[16px]">
               {asset.title}
             </p>
+
             <p className="text-Gray-1 font-light text-[10px]">{asset.name}</p>
           </div>
         </div>
@@ -40,17 +41,18 @@ export default function Assets() {
         <div
           className={`${
             asset.percent[0] === '-' ? 'bg-Danger-1' : 'bg-Success-1'
-          } rounded-lg flex justify-center items-center px-1 py-1 gap-[2px]`}>
+          } w-[54px] rounded-lg flex justify-center items-center px-1 py-1 gap-[1px] opacity-80`}>
           <Image
             src={
               asset.percent[0] === '-'
                 ? '/assets/icon/down.svg'
                 : '/assets/icon/up.svg'
             }
-            alt="brand image"
+            alt="arrow image"
             width={14}
             height={14}
           />
+
           <p className="text-White-1 font-semibold text-[10px]">
             {asset.percent}
           </p>
@@ -71,6 +73,7 @@ export default function Assets() {
 
           <div className="flex text-Gray-1 font-semibold text-[10px]">
             <p>{asset.coin}&nbsp;</p>
+
             <p>{asset.title}</p>
           </div>
         </div>
