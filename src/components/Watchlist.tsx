@@ -55,27 +55,29 @@ export default function Watchlist() {
           <p className="text-Black-1 text-xl font-semibold">
             {platform.title}/BUSD
           </p>
+
           <p className="text-Gray-1 font-light">{platform.name}</p>
         </div>
       </div>
 
-      <div className="flex flex-col items-end">
+      <div className="flex flex-col items-end gap-1">
         <p className="text-Black-1 font-semibold">${platform.marketCap}</p>
 
         <div
           className={`${
             platform.percent[0] === '-' ? 'bg-Danger-1' : 'bg-Success-1'
-          } rounded-lg flex justify-center items-center px-1 py-1 gap-[2px]`}>
+          } rounded-lg flex justify-center items-center px-1 py-1 gap-[2px] opacity-80`}>
           <Image
             src={
               platform.percent[0] === '-'
                 ? '/assets/icon/down.svg'
                 : '/assets/icon/up.svg'
             }
-            alt="brand image"
+            alt="arrow image"
             width={14}
             height={14}
           />
+
           <p className="text-White-1 font-semibold text-[10px]">
             {platform.percent}
           </p>
