@@ -6,7 +6,7 @@ import Watchlist from 'components/Watchlist';
 
 export default function Home() {
   return (
-    <div>
+    <div className="mt-4">
       <div className="flex flex-col gap-4">
         <ProfileFrame />
 
