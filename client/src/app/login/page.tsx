@@ -1,12 +1,20 @@
 'use client';
 
-import { Button, Logo, LoginForm, SignBottom, SignTop } from 'components';
+import { useRouter } from 'next/navigation';
 
 import useForm from 'hooks/useForm';
+
+import { Button, Logo, LoginForm, SignBottom, SignTop } from 'components';
 
 import { signForm } from 'types/data';
 
 export default function Login() {
+  const router = useRouter();
+
+  const goToRegister = () => {
+    router.push('/register');
+  };
+
   const { values, handleChange, handleSubmit } = useForm({
     initialValue: {
       email: '',
@@ -40,7 +48,7 @@ export default function Login() {
                   MASUK
                 </Button>
 
-                <SignBottom role="login" />
+                <SignBottom role="login" goToPage={goToRegister} />
               </div>
             </div>
           </div>

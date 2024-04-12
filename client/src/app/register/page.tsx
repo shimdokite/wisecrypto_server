@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -16,6 +17,12 @@ import useForm from 'hooks/useForm';
 import { signForm } from 'types/data';
 
 export default function Register() {
+  const router = useRouter();
+
+  const goToLogin = () => {
+    router.push('/login');
+  };
+
   const { next, setNext, values, handleChange, handleSubmit } = useForm({
     initialValue: {
       name: '',
@@ -75,7 +82,7 @@ export default function Register() {
                   />
                 )}
 
-                <SignBottom role="register" />
+                <SignBottom role="register" goToPage={goToLogin} />
               </div>
             </div>
           </div>
