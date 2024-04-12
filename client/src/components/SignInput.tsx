@@ -23,7 +23,7 @@ export default function SignInput({
     <div className="flex flex-col gap-2">
       <label className="font-montserrat">{children}</label>
 
-      {type === 'password' ? (
+      {type === 'registerPassword' ? (
         <PasswordInput placeholder={placeholder} />
       ) : (
         <input

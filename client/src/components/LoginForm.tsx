@@ -25,6 +25,7 @@ export default function LoginForm({ values, handleChange }: LoginFormProps) {
         handleChange={handleChange}
         value={values}
         tag="password"
+        type="password"
       />
     </form>
   );

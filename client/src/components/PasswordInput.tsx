@@ -19,7 +19,7 @@ export default function PasswordInput({ placeholder }: PasswordInputProps) {
       />
 
       <Image
-        src={isShow ? SIGN_INPUT.hide : SIGN_INPUT.show}
+        src={isShow ? SIGN_INPUT.show : SIGN_INPUT.hide}
         alt="password show & hide"
         width={16}
         height={16}

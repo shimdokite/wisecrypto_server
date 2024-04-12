@@ -33,7 +33,7 @@ export default function RegisterForm({
           <SignInput
             children="Sandi"
             placeholder="Masukkan Sandi"
-            type="password"
+            type="registerPassword"
             handleChange={handleChange}
             value={values}
             tag="password"
@@ -42,7 +42,7 @@ export default function RegisterForm({
           <SignInput
             children="Konfirmasi Kata Sandi"
             placeholder="Konfirmasi Kata Sandi"
-            type="password"
+            type="registerPassword"
             handleChange={handleChange}
             value={values}
             tag="passwordCheck"
