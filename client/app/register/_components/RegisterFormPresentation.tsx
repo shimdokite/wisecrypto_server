@@ -64,7 +64,7 @@ export default function RegisterFormPresentation({
             <div className="relative">
               <input
                 type={isShow ? 'text' : 'password'}
-                name="password"
+                name="passwordCheck"
                 className={`w-full py-3 pl-4 bg-no-repeat bg-[center_right_17px] outline-none focus:shadow-inputShadow focus:border-Primary-1 border-[1px] border-AquaSpring-1 bg-White-1 rounded-lg text-Gray-1`}
                 placeholder="Konfirmasi Kata Sandi"
                 value={values.passwordCheck}
