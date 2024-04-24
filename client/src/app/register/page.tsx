@@ -16,6 +16,8 @@ import useForm from 'hooks/useForm';
 
 import { signForm } from 'types/data';
 
+import { postNewUserInfomation } from 'api/user';
+
 export default function Register() {
   const router = useRouter();
 
@@ -29,13 +31,29 @@ export default function Register() {
       email: '',
       password: '',
       phone: '',
-      role: '',
+      position: '',
       passwordCheck: '',
-      check: 'off',
+      check: false,
     },
-    onSubmit: (values: signForm) => {
-      if (next === true && values.check === 'on') {
-        alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values: signForm) => {
+      if (next === true && values.check) {
+        const name = values.email || '';
+        const phoneNumber = values.phone || '';
+        const position = values.position || '';
+        const email = values.email || '';
+        const password = '1111';
+
+        const userInfo = {
+          name,
+          phoneNumber,
+          position,
+          email,
+          password,
+        };
+
+        const test = await postNewUserInfomation(userInfo);
+        console.log(test);
+        // alert(JSON.stringify(values, null, 2));
       }
     },
   });
@@ -66,7 +84,10 @@ export default function Register() {
               <div className="flex flex-col gap-6 justify-center items-center">
                 {next ? (
                   <>
-                    <RegisterCheck handleChange={handleChange} />
+                    <RegisterCheck
+                      values={values}
+                      handleChange={handleChange}
+                    />
 
                     <Button
                       children="DAFTAR"

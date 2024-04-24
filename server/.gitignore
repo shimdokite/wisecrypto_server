@@ -9,3 +9,6 @@ package-lock.json
 # local env files
 .env
 .env*.local
+
+# Firestore Database
+wisecrypto-50038-firebase-adminsdk-wclqn-073ed91895.json
