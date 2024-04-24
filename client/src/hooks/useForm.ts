@@ -13,9 +13,10 @@ const useForm = ({ initialValue, onSubmit }: UseFormProps) => {
   const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+    const { name, value, type, checked } = event.target;
+    const newValue = type === 'checkbox' ? checked : value;
 
-    setValues({ ...values, [name]: value });
+    setValues({ ...values, [name]: newValue });
   };
 
   const handleSubmit = () => {
