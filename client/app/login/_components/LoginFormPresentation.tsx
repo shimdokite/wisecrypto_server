@@ -6,7 +6,7 @@ interface LoginFormPresentationProps {
   values: LoginInfo;
 
   handleInputValueChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: React.MouseEventHandler<HTMLButtonElement>;
+  handleSubmit: React.FormEventHandler<HTMLFormElement>;
   goToRegister: () => void;
 }
 
@@ -17,11 +17,12 @@ export default function LoginFormPresentation({
   goToRegister,
 }: LoginFormPresentationProps) {
   return (
-    <form className="flex flex-col gap-4">
+    <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
       <div className="flex flex-col gap-2">
         <label className="font-montserrat">Email</label>
         <input
           type="email"
+          name="email"
           placeholder="botpablo@gmail.com"
           value={values.email}
           onChange={handleInputValueChange}
@@ -33,6 +34,7 @@ export default function LoginFormPresentation({
         <label className="font-montserrat">Kata Sandi</label>
         <input
           type="password"
+          name="password"
           placeholder="Masukkan Kata Sandi"
           value={values.password}
           onChange={handleInputValueChange}
@@ -45,7 +47,7 @@ export default function LoginFormPresentation({
           Lupa Kata Sandi?
         </button>
 
-        <Button color="green" onClick={handleSubmit}>
+        <Button color="green" type="submit">
           MASUK
         </Button>
 
