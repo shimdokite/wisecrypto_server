@@ -6,7 +6,7 @@ interface RegisterInputProps {
   children: string;
   placeholder: string;
   value: signForm;
-  tag: 'email' | 'name' | 'phone' | 'password' | 'passwordCheck' | 'role';
+  tag: 'email' | 'name' | 'phone' | 'password' | 'passwordCheck' | 'position';
   type?: string;
   handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

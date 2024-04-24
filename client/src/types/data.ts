@@ -4,6 +4,19 @@ export type signForm = {
   email?: string;
   password?: string;
   passwordCheck?: string;
-  role?: string;
-  check?: string;
+  position?: string;
+  check?: boolean;
 };
+
+export interface CreateAccount {
+  name: string;
+  phoneNumber: string;
+  position: string;
+  email: string;
+  password: string;
+}
+
+export interface Login {
+  email: string;
+  password: string;
+}

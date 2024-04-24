@@ -1,11 +1,23 @@
+import { signForm } from 'types/data';
+
 interface RegisterCheckProps {
+  values: signForm;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function RegisterCheck({ handleChange }: RegisterCheckProps) {
+export default function RegisterCheck({
+  values,
+  handleChange,
+}: RegisterCheckProps) {
   return (
     <div className="w-full flex gap-2 items-center">
-      <input name="check" type="checkbox" id="check" onChange={handleChange} />
+      <input
+        name="check"
+        type="checkbox"
+        id="check"
+        checked={values.check}
+        onChange={(event) => handleChange(event)}
+      />
 
       <label htmlFor="check" className="text-xs">
         <p>

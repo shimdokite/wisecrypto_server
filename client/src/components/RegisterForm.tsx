@@ -72,10 +72,10 @@ export default function RegisterForm({
             <label className="font-montserrat">Daftar Sebagai</label>
 
             <select
-              name="role"
+              name="position"
               className="appearance-none py-3 pl-4 outline-none focus:shadow-inputShadow focus:border-Primary-1 border-[1px] border-AquaSpring-1 bg-White-1 rounded-lg">
-              <option value="user">Pengguna</option>
-              <option value="admin">Pengelola</option>
+              <option value="Pengguna">Pengguna</option>
+              <option value="Pengelola">Pengelola</option>
             </select>
           </div>
         </>
