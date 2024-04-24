@@ -4,4 +4,6 @@ export interface CreateAccount {
   position: string;
   email: string;
   password: string;
+  passwordCheck?: string;
+  check?: boolean;
 }

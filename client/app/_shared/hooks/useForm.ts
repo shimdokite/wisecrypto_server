@@ -19,10 +19,10 @@ const useForm = <T extends CreateAccount | LoginInfo>({
   const handleInputValueChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    const { type, value, checked } = event.target;
+    const { name, type, value, checked } = event.target;
     const newValue = type === 'checkbox' ? checked : value;
 
-    setValues({ ...values, [type]: newValue });
+    setValues({ ...values, [name]: newValue });
   };
 
   const handleSubmit = () => {
