@@ -2,6 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 
+import { postUserCredentials } from 'api/user';
+
 import useForm from 'hooks/useForm';
 
 import { Button, Logo, LoginForm, SignBottom, SignTop } from 'components';
@@ -20,9 +22,13 @@ export default function Login() {
       email: '',
       password: '',
     },
-    onSubmit: (values: signForm) => {
+    onSubmit: async (values: signForm) => {
       if (values.email && values.password) {
-        alert(JSON.stringify(values, null, 2));
+        const email = values.email;
+        const password = values.password;
+
+        const userInfo = await postUserCredentials({ email, password });
+        alert(userInfo);
       }
     },
   });
