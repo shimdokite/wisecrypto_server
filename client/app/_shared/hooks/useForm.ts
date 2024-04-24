@@ -1,22 +1,28 @@
 import { useEffect, useState } from 'react';
 
-import { signForm } from 'types/data';
+import { LoginInfo } from '../../login/_types/data';
+import { CreateAccount } from '../../register/_types/data';
 
-interface UseFormProps {
-  initialValue: signForm;
-  onSubmit: (values: signForm) => void;
+interface UseFormProps<T extends CreateAccount | LoginInfo> {
+  initialValue: T;
+  onSubmit: (values: T) => void;
 }
 
-const useForm = ({ initialValue, onSubmit }: UseFormProps) => {
+const useForm = <T extends CreateAccount | LoginInfo>({
+  initialValue,
+  onSubmit,
+}: UseFormProps<T>) => {
   const [values, setValues] = useState(initialValue);
   const [next, setNext] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = event.target;
+  const handleInputValueChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const { type, value, checked } = event.target;
     const newValue = type === 'checkbox' ? checked : value;
 
-    setValues({ ...values, [name]: newValue });
+    setValues({ ...values, [type]: newValue });
   };
 
   const handleSubmit = () => {
@@ -39,7 +45,7 @@ const useForm = ({ initialValue, onSubmit }: UseFormProps) => {
     setNext,
     submitting,
     values,
-    handleChange,
+    handleInputValueChange,
     handleSubmit,
     onSubmit,
   };
