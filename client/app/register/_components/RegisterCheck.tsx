@@ -1,13 +1,14 @@
-import { signForm } from 'types/data';
+import { CreateAccount } from '../_types/data';
 
 interface RegisterCheckProps {
-  values: signForm;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  values: CreateAccount;
+
+  handleInputValueChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function RegisterCheck({
   values,
-  handleChange,
+  handleInputValueChange,
 }: RegisterCheckProps) {
   return (
     <div className="w-full flex gap-2 items-center">
@@ -16,7 +17,7 @@ export default function RegisterCheck({
         type="checkbox"
         id="check"
         checked={values.check}
-        onChange={(event) => handleChange(event)}
+        onChange={handleInputValueChange}
       />
 
       <label htmlFor="check" className="text-xs">
