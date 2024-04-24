@@ -1,6 +1,6 @@
-import SignInput from './SignInput';
+import SignInput from '../../_shared/components/SignInput';
 
-import { signForm } from 'types/data';
+import { signForm } from '../../_shared/types/data';
 
 interface LoginFormProps {
   values: signForm;

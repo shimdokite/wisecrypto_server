@@ -3,20 +3,15 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import {
-  Button,
-  Logo,
-  RegisterCheck,
-  RegisterForm,
-  SignBottom,
-  SignTop,
-} from 'components';
+import { postNewUserInfomation } from './_api/user';
 
-import useForm from 'hooks/useForm';
+import { Button, Logo, SignBottom, SignTop } from '../_shared/components';
+import useForm from '../_shared/hooks/useForm';
+
+import RegisterForm from './_components/RegisterForm';
+import RegisterCheck from './_components/RegisterCheck';
 
 import { signForm } from 'types/data';
-
-import { postNewUserInfomation } from 'api/user';
 
 export default function Register() {
   const router = useRouter();

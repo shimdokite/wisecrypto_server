@@ -1,6 +1,6 @@
 import { PasswordInput } from '.';
 
-import { signForm } from 'types/data';
+import { signForm } from '../../login/_types/data';
 
 interface RegisterInputProps {
   children: string;

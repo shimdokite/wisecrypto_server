@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Mulish, Montserrat } from 'next/font/google';
 
-import '../styles/globals.css';
+import './_shared/styles/globals.css';
 
 const mulish = Mulish({ subsets: ['latin'] });
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--montserrat' });

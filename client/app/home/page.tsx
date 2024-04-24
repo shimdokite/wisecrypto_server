@@ -1,8 +1,8 @@
-import Assets from 'components/Assets';
-import Balance from 'components/Balance';
-import ProfileFrame from 'components/ProfileFrame';
-import TotalPortfolio from 'components/TotalPortfolio';
-import Watchlist from 'components/Watchlist';
+import Assets from './_components/Assets';
+import Balance from './_components/Balance';
+import ProfileFrame from './_components/ProfileFrame';
+import TotalPortfolio from './_components/TotalPortfolio';
+import Watchlist from './_components/Watchlist';
 
 export default function Home() {
   return (

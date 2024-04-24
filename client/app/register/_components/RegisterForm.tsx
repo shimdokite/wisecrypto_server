@@ -1,6 +1,6 @@
 import { FormEventHandler } from 'react';
 
-import SignInput from './SignInput';
+import SignInput from '../../_shared/components/SignInput';
 
 import { signForm } from 'types/data';
 

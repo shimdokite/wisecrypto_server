@@ -2,11 +2,13 @@
 
 import { useRouter } from 'next/navigation';
 
-import { postUserCredentials } from 'api/user';
+import { postUserCredentials } from './_api/user';
 
-import useForm from 'hooks/useForm';
+import useForm from '../_shared/hooks/useForm';
 
-import { Button, Logo, LoginForm, SignBottom, SignTop } from 'components';
+import { Button, Logo, SignBottom, SignTop } from '../_shared/components';
+
+import LoginForm from './_components/LoginForm';
 
 import { signForm } from 'types/data';
 

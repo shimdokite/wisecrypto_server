@@ -1,15 +1,11 @@
 import type { Config } from 'tailwindcss';
 
-import tokens from './src/styles/tokens';
+import tokens from './app/_shared/styles/tokens';
 
 const { colors, boxShadow } = tokens;
 
 const config: Config = {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ['./app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     colors,
     extend: {
