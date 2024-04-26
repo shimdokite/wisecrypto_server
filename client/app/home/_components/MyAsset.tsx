@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export default function Assets() {
+export default function MyAsset() {
   //TODO: 코인 회사 데이터 node 서버 만들기
   const USER_ASSETS = [
     {
