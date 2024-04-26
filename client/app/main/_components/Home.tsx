@@ -1,10 +1,10 @@
 import {
-  MyAsset,
   CheckMyBalance,
+  MyAsset,
   ProfileFrame,
   TotalPortfolio,
   Watchlist,
-} from './_components';
+} from '.';
 
 export default function Home() {
   return (

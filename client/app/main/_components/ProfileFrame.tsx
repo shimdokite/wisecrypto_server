@@ -7,7 +7,7 @@ export default function ProfileFrame() {
   };
 
   return (
-    <section className="flex items-center mt-[16px] mx-[15px]">
+    <section className="flex items-center mx-[15px]">
       <div className="w-full flex gap-3 items-center">
         <Image
           src={USER_INFO.profileImage || USER_DEFAULT_PROFILE_IMAGE}
