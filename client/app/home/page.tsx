@@ -1,8 +1,10 @@
-import Assets from './_components/Assets';
-import Balance from './_components/Balance';
-import ProfileFrame from './_components/ProfileFrame';
-import TotalPortfolio from './_components/TotalPortfolio';
-import Watchlist from './_components/Watchlist';
+import {
+  MyAsset,
+  CheckMyBalance,
+  ProfileFrame,
+  TotalPortfolio,
+  Watchlist,
+} from './_components';
 
 export default function Home() {
   return (
@@ -14,7 +16,7 @@ export default function Home() {
           <div className="flex gap-2 overflow-x-auto scrollbar-hide ml-[15px]">
             <TotalPortfolio />
 
-            <Balance />
+            <CheckMyBalance />
           </div>
 
           <div className="flex flex-col gap-6">
@@ -28,7 +30,7 @@ export default function Home() {
               </div>
 
               <div className="flex gap-4 scrollbar-hide overflow-x-auto">
-                <Assets />
+                <MyAsset />
               </div>
             </div>
           </div>
