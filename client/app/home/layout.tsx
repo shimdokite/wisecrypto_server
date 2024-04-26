@@ -1,4 +1,4 @@
-import Navigation from './_components/Navigation';
+import NavigationContainer from './_components/NavigationContainer';
 
 export default function HomeLayout({
   children,
@@ -9,7 +9,7 @@ export default function HomeLayout({
     <main className="w-full pb-[84px]">
       {children}
 
-      <Navigation />
+      <NavigationContainer />
     </main>
   );
 }
