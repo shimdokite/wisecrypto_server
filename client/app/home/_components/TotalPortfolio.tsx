@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function TotalPortfolio() {
   return (
-    <div className="w-full">
+    <section className="w-full">
       <div className="w-[345px] h-[112px] flex justify-between items-center bg-[url('/assets/image/portofolio1.png')] bg-no-repeat rounded-[10px]">
         <div className="flex flex-col pl-6 py-[18px]">
           <p className="text-White-1">Total Portofolio </p>
@@ -22,6 +22,6 @@ export default function TotalPortfolio() {
           <p className="text-Success-1 font-semibold text-xs">15.3%</p>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
