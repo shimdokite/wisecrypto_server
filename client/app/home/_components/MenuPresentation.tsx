@@ -8,15 +8,20 @@ interface MenuProps {
   clickToMenu: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export default function Menu({ menu, title, icon, clickToMenu }: MenuProps) {
+export default function MenuPresentation({
+  menu,
+  title,
+  icon,
+  clickToMenu,
+}: MenuProps) {
   return (
     <div
-      className={`w-full h-full flex flex-col items-center justify-center gap-[10px] pb-3 cursor-pointer`}
+      className="w-full h-full flex flex-col items-center justify-center gap-[10px] pb-3 cursor-pointer"
       onClick={clickToMenu}>
-      <div
+      <hr
         className={`${
           menu === icon && 'w-[66px] border-[1px] border-Primary-1 rounded-full'
-        }`}></div>
+        }`}></hr>
 
       <Image
         src={
