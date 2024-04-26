@@ -1,6 +1,6 @@
-export default function Balance() {
+export default function CheckMyBalance() {
   return (
-    <div className="w-full">
+    <section className="w-full">
       <div className="w-[345px] h-[112px] flex justify-between items-center bg-[url('/assets/image/balance.png')] bg-no-repeat pl-6 pr-[25px] rounded-[10px]">
         <div className="flex flex-col items-center">
           <p className="text-Gray-1">Saldo Kamu</p>
@@ -12,6 +12,6 @@ export default function Balance() {
           <button className="text-White-1 font-semibold text-xs">Tambah</button>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

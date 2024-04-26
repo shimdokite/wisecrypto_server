@@ -40,7 +40,7 @@ export default function Watchlist() {
   ];
 
   return PLATFORM.map((platform) => (
-    <div className="flex justify-between items-center bg-White-1 w-[343px] h-[88px] rounded-[10px] px-4">
+    <article className="flex justify-between items-center bg-White-1 w-[343px] h-[88px] rounded-[10px] px-4">
       <div className="flex items-center gap-4">
         <div className="w-16 h-16 rounded-[10px] bg-Light-1 flex justify-center items-center">
           <Image
@@ -83,6 +83,6 @@ export default function Watchlist() {
           </p>
         </div>
       </div>
-    </div>
+    </article>
   ));
 }

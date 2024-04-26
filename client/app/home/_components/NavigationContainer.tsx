@@ -2,28 +2,28 @@
 
 import { useState } from 'react';
 
-import Menu from './Menu';
+import MenuPresentation from './MenuPresentation';
 
-export default function Navigation() {
+export default function NavigationContainer() {
   const [menu, setMenu] = useState('');
 
   return (
     <nav className="fixed left-0 right-0 bottom-0 w-full bg-White-1 flex items-center justify-evenly gap-[52.5px] px-8">
-      <Menu
+      <MenuPresentation
         menu={menu}
         icon="home"
         title="Home"
         clickToMenu={() => setMenu('home')}
       />
 
-      <Menu
+      <MenuPresentation
         menu={menu}
         icon="market"
         title="Market"
         clickToMenu={() => setMenu('market')}
       />
 
-      <Menu
+      <MenuPresentation
         menu={menu}
         icon="profile"
         title="Profile"
