@@ -1,6 +1,6 @@
-import NavigationContainer from './_components/NavigationContainer';
+import { NavigationContainer } from './_components';
 
-export default function HomeLayout({
+export default function MainLayout({
   children,
 }: {
   children: React.ReactNode;
