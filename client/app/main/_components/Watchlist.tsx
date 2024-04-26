@@ -1,44 +1,44 @@
 import Image from 'next/image';
 
-export default function Watchlist() {
-  const PLATFORM = [
-    {
-      image: '/assets/image/bitcoin.svg',
-      title: 'BTC',
-      name: 'Bitcoin',
-      percent: '15.3%',
-      marketCap: '54,382.64',
-    },
-    {
-      image: '/assets/image/etherium.svg',
-      title: 'ETH',
-      name: 'Etherium',
-      percent: '-2.1%',
-      marketCap: '4,145.61',
-    },
-    {
-      image: '/assets/image/litecoin.svg',
-      title: 'LTC',
-      name: 'Litecoin',
-      percent: '-1.1%',
-      marketCap: '207.3',
-    },
-    {
-      image: '/assets/image/solana.svg',
-      title: 'SOL',
-      name: 'Solana',
-      percent: '15.3%',
-      marketCap: '207.3',
-    },
-    {
-      image: '/assets/image/ripple.svg',
-      title: 'XRP',
-      name: 'Ripple',
-      percent: '15.3%',
-      marketCap: '1.0358',
-    },
-  ];
+export const PLATFORM = [
+  {
+    image: '/assets/image/bitcoin.svg',
+    title: 'BTC',
+    name: 'Bitcoin',
+    percent: '15.3%',
+    marketCap: '54,382.64',
+  },
+  {
+    image: '/assets/image/etherium.svg',
+    title: 'ETH',
+    name: 'Etherium',
+    percent: '-2.1%',
+    marketCap: '4,145.61',
+  },
+  {
+    image: '/assets/image/litecoin.svg',
+    title: 'LTC',
+    name: 'Litecoin',
+    percent: '-1.1%',
+    marketCap: '207.3',
+  },
+  {
+    image: '/assets/image/solana.svg',
+    title: 'SOL',
+    name: 'Solana',
+    percent: '15.3%',
+    marketCap: '207.3',
+  },
+  {
+    image: '/assets/image/ripple.svg',
+    title: 'XRP',
+    name: 'Ripple',
+    percent: '15.3%',
+    marketCap: '1.0358',
+  },
+];
 
+export default function Watchlist() {
   return PLATFORM.map((platform) => (
     <article className="flex justify-between items-center bg-White-1 w-[343px] h-[88px] rounded-[10px] px-4">
       <div className="flex items-center gap-4">

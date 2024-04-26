@@ -5,6 +5,12 @@ import NavigationContainer from './NavigationContainer';
 import ProfileFrame from './ProfileFrame';
 import TotalPortfolio from './TotalPortfolio';
 import Watchlist from './Watchlist';
+import FilterButton from './FilterButton';
+import Home from './Home';
+import Market from './Market';
+import MarketFilter from './MarketFilter';
+import Profile from './Profile';
+import Search from './Search';
 
 export {
   MyAsset,
@@ -14,4 +20,10 @@ export {
   ProfileFrame,
   TotalPortfolio,
   Watchlist,
+  FilterButton,
+  Home,
+  Market,
+  MarketFilter,
+  Profile,
+  Search,
 };
