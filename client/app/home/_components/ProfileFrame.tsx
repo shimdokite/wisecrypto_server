@@ -1,11 +1,16 @@
 import Image from 'next/image';
 
 export default function ProfileFrame() {
+  const USER_INFO = {
+    name: 'Shimdokite',
+    profileImage: '/assets/image/남순.jpg',
+  };
+
   return (
     <section className="flex items-center mt-[16px] mx-[15px]">
       <div className="w-full flex gap-3 items-center">
         <Image
-          src={'/assets/image/남순.jpg'}
+          src={USER_INFO.profileImage || USER_DEFAULT_PROFILE_IMAGE}
           alt="profile image"
           width={40}
           height={40}
@@ -15,7 +20,9 @@ export default function ProfileFrame() {
         <div className="flex flex-col">
           <p className="text-Gray2-1 text-xs">Halo,</p>
 
-          <h1 className="text-Black-1 text-xl font-semibold">User Name</h1>
+          <h1 className="text-Black-1 text-xl font-semibold">
+            {USER_INFO.name}
+          </h1>
         </div>
       </div>
 
@@ -31,3 +38,5 @@ export default function ProfileFrame() {
     </section>
   );
 }
+
+const USER_DEFAULT_PROFILE_IMAGE = '/assets/image/default_profile_image.svg';
