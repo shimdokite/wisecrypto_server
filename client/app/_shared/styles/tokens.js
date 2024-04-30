@@ -35,6 +35,9 @@ const tokens = {
     },
     "AquaSpring": {
       "1": "#E9FCE9"
+    },
+    "SpringGreen": {
+      "1": "#33D587"
     }
   },
   
