@@ -1,11 +1,11 @@
 import Image from 'next/image';
 
-export default function ProfileFrame() {
-  const USER_INFO = {
-    name: 'Shimdokite',
-    profileImage: '/assets/image/남순.jpg',
-  };
+export const USER_INFO = {
+  name: 'Shimdokite',
+  profileImage: '/assets/image/남순.jpg',
+};
 
+export default function ProfileFrame() {
   return (
     <section className="flex items-center mx-[15px]">
       <div className="w-full flex gap-3 items-center">
