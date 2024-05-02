@@ -1,18 +1,18 @@
 import { Request, Response } from 'express';
+import { connection } from '../..';
 
 export const matchUserInfomation = async (
 	request: Request,
 	response: Response
 ) => {
-	//TODO: 일반 유저와 관리자 구분해서 받아오기
-	// const snapshot = db.collection('users').doc('dokite');
-	// const userInfo = await snapshot.get();
+	const { email, password } = request.body;
+	const loginUserQuery = 'SELECT * FROM User WHERE email=? AND password=?';
 
-	// if (userInfo.exists) {
-	// 	request.session.cookie.maxAge = 1000 * 60 * 30;
+	connection.query(loginUserQuery, [email, password], (error, result) => {
+		if (error) return response.status(500).send('Internal Server Error');
 
-	// 	return response.status(201).json(userInfo.data());
-	// }
+		if (result.length === 0) return response.status(401).send('Unauthorized');
 
-	return response.status(401).send('Unauthorized');
+		return response.status(201).send(...result);
+	});
 };

@@ -10,7 +10,8 @@ const { SESSION_SECRET, DB_HOST, DB_USER, DB_PASS, CLIENT_ORIGIN } =
 	process.env;
 const app = express();
 const port = 3001;
-const connection = mysql.createConnection({
+
+export const connection = mysql.createConnection({
 	host: DB_HOST,
 	user: DB_USER,
 	password: DB_PASS,
@@ -18,14 +19,6 @@ const connection = mysql.createConnection({
 });
 
 connection.connect();
-
-connection.query('SELECT * FROM User', (error, rows, fields) => {
-	if (error) throw error;
-
-	console.log(rows);
-});
-
-connection.end();
 
 app.get('/', (request: Request, response: Response) => {
 	response.send('Hello World');
@@ -35,7 +28,7 @@ app.listen(port, () => {
 });
 
 const corsOptions = {
-	origin: 'http://localhost:3000',
+	origin: CLIENT_ORIGIN,
 	credentials: true,
 	methods: ['GET', 'POST', 'OPTIONS'],
 };
