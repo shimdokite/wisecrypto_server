@@ -1,31 +1,26 @@
 import { Request, Response } from 'express';
+import { connection } from '../..';
 
 export const createAccount = (request: Request, response: Response) => {
-	const { name, phoneNumber, position, email, password } = request.body;
+	const { email, phoneNumber, password } = request.body;
+	const checkExistingUserQuery = 'SELECT email FROM User WHERE email=?';
+	const registerUserQuery = 'INSERT INTO User SET ?';
 
-	const userInfo = {
-		name,
-		phoneNumber,
-		position,
-		email,
-		password,
-	};
+	connection.query(checkExistingUserQuery, [email], (error, rows) => {
+		if (error) return response.status(500).send('Internal Server Error');
 
-	// if (position === 'Pengguna') {
-	// 	db.collection('users')
-	// 		.doc('Pengguna')
-	// 		.set({ ...userInfo });
+		if (rows.length) {
+			return response.status(400).send('Bad Request');
+		}
 
-	// 	return response.status(201).send('Create Account!');
-	// }
+		connection.query(
+			registerUserQuery,
+			{ email, phoneNumber, password },
+			(error, rows) => {
+				if (error) return response.status(500).send('Internal Server Error');
 
-	// if (position === 'Pengelola') {
-	// 	db.collection('users')
-	// 		.doc('Pengelola')
-	// 		.set({ ...userInfo });
-
-	// 	return response.status(201).send('Create Account!');
-	// }
-
-	return response.status(400).send('Bad Request');
+				return response.status(201).send('User registered successfully');
+			}
+		);
+	});
 };
