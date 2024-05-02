@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function TotalPortfolio() {
   const USER_PORTFOLIO = {
-    totalPortfolio: '$10',
+    totalPortfolio: '$56.98',
     percent: '15.3%',
   };
 

@@ -11,6 +11,11 @@ import Market from './Market';
 import MarketFilter from './MarketFilter';
 import Profile from './Profile';
 import Search from './Search';
+import CurrentMyBalance from './CurrentMyBalance';
+import MoneyTransactionButton from './MoneyTransactionButton';
+import ProfileImageEditor from './ProfileImageEditor';
+import SettingContainer from './SettingContainer';
+import SettingPresentation from './SettingPresentation';
 
 export {
   MyAsset,
@@ -26,4 +31,9 @@ export {
   MarketFilter,
   Profile,
   Search,
+  CurrentMyBalance,
+  MoneyTransactionButton,
+  ProfileImageEditor,
+  SettingContainer,
+  SettingPresentation,
 };
