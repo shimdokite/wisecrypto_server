@@ -70,7 +70,7 @@ export default function RegisterFormContainer() {
       setSubmitting(true);
   };
 
-  const onNext = () => {
+  const handleNextStep = () => {
     if (values.name === '' || values.phoneNumber === '') return;
 
     setNext(true);
@@ -99,7 +99,7 @@ export default function RegisterFormContainer() {
                 handleInputValueChange={handleInputValueChange}
                 setIsPasswordShow={setIsPasswordShow}
                 setIsPasswordCheckShow={setIsPasswordCheckShow}
-                onNext={onNext}
+                handleNextStep={handleNextStep}
                 goToLogin={goToLogin}
               />
             </div>

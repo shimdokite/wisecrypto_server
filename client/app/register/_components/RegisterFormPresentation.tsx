@@ -15,7 +15,7 @@ interface RegisterFormPresentationProps {
   handleSubmit: React.FormEventHandler<HTMLFormElement>;
   setIsPasswordShow: (isPasswordShow: boolean) => void;
   setIsPasswordCheckShow: (isPasswordCheckShow: boolean) => void;
-  onNext: () => void;
+  handleNextStep: () => void;
   goToLogin: () => void;
 }
 
@@ -28,7 +28,7 @@ export default function RegisterFormPresentation({
   handleSubmit,
   setIsPasswordShow,
   setIsPasswordCheckShow,
-  onNext,
+  handleNextStep,
   goToLogin,
 }: RegisterFormPresentationProps) {
   return (
@@ -149,7 +149,7 @@ export default function RegisterFormPresentation({
             </Button>
           </>
         ) : (
-          <Button color="green" type="button" onClick={onNext}>
+          <Button color="green" type="button" onClick={handleNextStep}>
             SELANJUTNYA
           </Button>
         )}
