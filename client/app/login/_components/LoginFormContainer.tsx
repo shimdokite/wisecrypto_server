@@ -1,5 +1,6 @@
 'use client';
 
+import { FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { postUserCredentials } from '../_api/user';
@@ -7,7 +8,6 @@ import { postUserCredentials } from '../_api/user';
 import useForm from 'hooks/useForm';
 
 import { Logo, SignTop } from 'components';
-
 import LoginFormPresentation from './LoginFormPresentation';
 
 import { LoginInfo } from '../_types/data';
@@ -15,25 +15,29 @@ import { LoginInfo } from '../_types/data';
 export default function LoginFormContainer() {
   const router = useRouter();
 
-  const goToRegister = () => {
-    router.push('/register');
-  };
-
-  const { values, handleInputValueChange, handleSubmit } = useForm({
+  const { values, handleInputValueChange, setSubmitting } = useForm({
     initialValue: {
       email: '',
       password: '',
     },
     onSubmit: async (values: LoginInfo) => {
-      if (values.email && values.password) {
-        const email = values.email;
-        const password = values.password;
+      const { email, password } = values;
 
-        const userInfo = await postUserCredentials({ email, password });
-        alert(userInfo);
-      }
+      const userInfo = await postUserCredentials({ email, password });
+      console.log(userInfo.data);
     },
   });
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event?.preventDefault();
+    const { email, password } = values;
+
+    if (email && password) setSubmitting(true);
+  };
+
+  const goToRegister = () => {
+    router.push('/register');
+  };
 
   return (
     <section className="w-full h-full">

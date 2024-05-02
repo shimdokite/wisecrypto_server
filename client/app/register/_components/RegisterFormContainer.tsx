@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-
+import { FormEvent, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -9,61 +8,78 @@ import { postNewUserInfomation } from '../_api/user';
 
 import useForm from 'hooks/useForm';
 
-import { Button, Logo, SignBottom, SignTop } from 'components';
-
+import { Logo, SignTop } from 'components';
 import RegisterFormPresentation from './RegisterFormPresentation';
-import RegisterCheck from './RegisterCheck';
 
 import { CreateAccount } from '../_types/data';
 
 export default function RegisterFormContainer() {
-  const [isShow, setIsShow] = useState(false);
+  const [isPasswordShow, setIsPasswordShow] = useState(false);
+  const [isPasswordCheckShow, setIsPasswordCheckShow] = useState(false);
 
   const router = useRouter();
 
-  const goToLogin = () => {
-    router.push('/login');
-  };
-
-  const { next, setNext, values, handleInputValueChange, handleSubmit } =
+  const { next, values, handleInputValueChange, setSubmitting, setNext } =
     useForm({
       initialValue: {
         name: '',
         email: '',
         password: '',
-        position: '',
+        position: 'Pengguna',
         phoneNumber: '',
         check: false,
       },
       onSubmit: async (values: CreateAccount) => {
-        //TODO: 실제 회원가입 로직으로 변경하기
-        if (next === true && values.check) {
-          const name = values.email || '';
-          const phoneNumber = values.phoneNumber || '';
-          const position = values.position || '';
-          const email = values.email || '';
-          const password = '1111';
+        const name = values.email || '';
+        const phoneNumber = values.phoneNumber || '';
+        const position = values.position || '';
+        const email = values.email || '';
+        const password = values.password || '';
 
-          const userInfo: CreateAccount = {
-            name,
-            phoneNumber,
-            position,
-            email,
-            password,
-          };
+        const userInfo: CreateAccount = {
+          name,
+          phoneNumber,
+          position,
+          email,
+          password,
+        };
 
-          const test = await postNewUserInfomation(userInfo);
-          console.log(test);
-          // alert(JSON.stringify(values, null, 2));
-        }
+        const test = await postNewUserInfomation(userInfo);
+        console.log(test);
       },
     });
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event?.preventDefault();
+    const {
+      name,
+      phoneNumber,
+      position,
+      email,
+      password,
+      passwordCheck,
+      check,
+    } = values;
+
+    if (password !== passwordCheck) {
+      alert('비밀번호가 일치하지 않습니다.');
+      return;
+    }
+
+    if (name && phoneNumber && position && email && password && check && next)
+      setSubmitting(true);
+  };
 
   const onNext = () => {
     if (values.name === '' || values.phoneNumber === '') return;
 
     setNext(true);
   };
+
+  const goToLogin = () => {
+    router.push('/login');
+  };
+
   return (
     <section className="w-full h-full">
       <div className="mx-[15px]">
@@ -77,32 +93,15 @@ export default function RegisterFormContainer() {
               <RegisterFormPresentation
                 next={next}
                 values={values}
-                isShow={isShow}
+                isPasswordShow={isPasswordShow}
+                isPasswordCheckShow={isPasswordCheckShow}
                 handleSubmit={handleSubmit}
                 handleInputValueChange={handleInputValueChange}
-                setIsShow={setIsShow}
+                setIsPasswordShow={setIsPasswordShow}
+                setIsPasswordCheckShow={setIsPasswordCheckShow}
+                onNext={onNext}
+                goToLogin={goToLogin}
               />
-
-              <div className="flex flex-col gap-6 justify-center items-center">
-                {next ? (
-                  <>
-                    <RegisterCheck
-                      values={values}
-                      handleInputValueChange={handleInputValueChange}
-                    />
-
-                    <Button color="green" onClick={handleSubmit}>
-                      DAFTAR
-                    </Button>
-                  </>
-                ) : (
-                  <Button color="green" onClick={onNext}>
-                    SELANJUTNYA
-                  </Button>
-                )}
-
-                <SignBottom role="register" goToPage={goToLogin} />
-              </div>
             </div>
           </div>
         </div>

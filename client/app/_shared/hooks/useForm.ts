@@ -25,13 +25,6 @@ const useForm = <T extends CreateAccount | LoginInfo>({
     setValues({ ...values, [name]: newValue });
   };
 
-  const handleSubmit = () => {
-    event?.preventDefault;
-
-    setSubmitting(true);
-    setNext(true);
-  };
-
   useEffect(() => {
     if (submitting) {
       onSubmit(values);
@@ -42,11 +35,11 @@ const useForm = <T extends CreateAccount | LoginInfo>({
 
   return {
     next,
-    setNext,
     submitting,
     values,
+    setNext,
+    setSubmitting,
     handleInputValueChange,
-    handleSubmit,
     onSubmit,
   };
 };
