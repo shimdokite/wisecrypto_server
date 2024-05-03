@@ -6,10 +6,9 @@ import loginRouter from './routes/users/loginRouter';
 import registerRouter from './routes/users/registerRouter';
 
 const dotenv = require('dotenv').config();
-const { SESSION_SECRET, DB_HOST, DB_USER, DB_PASS, CLIENT_ORIGIN } =
-	process.env;
 const app = express();
 const port = 3001;
+const { DB_HOST, DB_USER, DB_PASS, CLIENT_ORIGIN } = process.env;
 
 export const connection = mysql.createConnection({
 	host: DB_HOST,
@@ -36,20 +35,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json({ strict: false }));
 app.use(express.urlencoded({ extended: false }));
-
-app.use(
-	session({
-		secret: SESSION_SECRET || '',
-		resave: false,
-		saveUninitialized: false,
-		cookie: {
-			domain: 'localhost',
-			path: '/',
-			httpOnly: true,
-			secure: false,
-		},
-	})
-);
 
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
