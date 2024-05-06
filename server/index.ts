@@ -1,5 +1,4 @@
 import express, { Request, Response } from 'express';
-import session from 'express-session';
 import cors from 'cors';
 import mysql from 'mysql';
 import loginRouter from './routes/users/loginRouter';
@@ -17,7 +16,11 @@ export const connection = mysql.createConnection({
 	database: 'wisecrypto',
 });
 
-connection.connect();
+connection.connect((error) => {
+	if (error) return console.log(error.stack);
+
+	console.log('Successfully connecting!');
+});
 
 app.get('/', (request: Request, response: Response) => {
 	response.send('Hello World');
