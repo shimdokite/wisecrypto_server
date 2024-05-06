@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { connection } from '../..';
-import { userInfo } from 'os';
 
 export const matchUserInfomation = async (
 	request: Request,
@@ -31,6 +30,6 @@ export const matchUserInfomation = async (
 		response.cookie('accessToken', `Bearer ${accessToken}`, { httpOnly: true });
 		response.cookie('refreshToken', refreshToken, { httpOnly: true });
 
-		return response.status(201).send(...result);
+		return response.status(201).send('User logged in successfully.');
 	});
 };
