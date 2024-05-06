@@ -1,15 +1,13 @@
 import express, { Request, Response } from 'express';
-import session from 'express-session';
 import cors from 'cors';
 import mysql from 'mysql';
 import loginRouter from './routes/users/loginRouter';
 import registerRouter from './routes/users/registerRouter';
 
 const dotenv = require('dotenv').config();
-const { SESSION_SECRET, DB_HOST, DB_USER, DB_PASS, CLIENT_ORIGIN } =
-	process.env;
 const app = express();
 const port = 3001;
+const { DB_HOST, DB_USER, DB_PASS, CLIENT_ORIGIN } = process.env;
 
 export const connection = mysql.createConnection({
 	host: DB_HOST,
@@ -18,7 +16,11 @@ export const connection = mysql.createConnection({
 	database: 'wisecrypto',
 });
 
-connection.connect();
+connection.connect((error) => {
+	if (error) return console.log(error.stack);
+
+	console.log('Successfully connecting!');
+});
 
 app.get('/', (request: Request, response: Response) => {
 	response.send('Hello World');
@@ -36,20 +38,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json({ strict: false }));
 app.use(express.urlencoded({ extended: false }));
-
-app.use(
-	session({
-		secret: SESSION_SECRET || '',
-		resave: false,
-		saveUninitialized: false,
-		cookie: {
-			domain: 'localhost',
-			path: '/',
-			httpOnly: true,
-			secure: false,
-		},
-	})
-);
 
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
