@@ -1,21 +1,31 @@
 import { Request, Response } from 'express';
+import { FieldPacket, RowDataPacket } from 'mysql2';
 import jwt from 'jsonwebtoken';
-import { connection } from '../..';
+import { db } from '../../db';
+
+interface Login extends RowDataPacket {
+	email: string;
+	password: string;
+}
 
 export const matchUserInfomation = async (
 	request: Request,
 	response: Response
 ) => {
+	const promisePool = db.promise();
+	const { email, password } = request.body;
 	const accessTokenKey = process.env.ACCESS_TOKEN_SECRET || '';
 	const refreshTokenKey = process.env.REFRESH_TOKEN_SECRET || '';
-	const { email, password } = request.body;
 	const loginUserQuery =
 		'SELECT id, email, phoneNumber FROM User WHERE email=? AND password=?';
 
-	connection.query(loginUserQuery, [email, password], (error, result) => {
-		if (error) return response.status(500).send('Internal Server Error');
+	try {
+		const [rows]: [Login[], FieldPacket[]] = await promisePool.query(
+			loginUserQuery,
+			[email, password]
+		);
 
-		if (result.length === 0) return response.status(401).send('Unauthorized');
+		if (rows.length === 0) return response.status(401).send('Unauthorized');
 
 		const accessToken = jwt.sign({ type: 'jwt', email }, accessTokenKey, {
 			algorithm: 'HS256',
@@ -31,5 +41,7 @@ export const matchUserInfomation = async (
 		response.cookie('refreshToken', refreshToken, { httpOnly: true });
 
 		return response.status(201).send('User logged in successfully.');
-	});
+	} catch (error) {
+		return response.status(500).send('Internal Server Error');
+	}
 };
