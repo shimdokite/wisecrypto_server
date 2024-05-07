@@ -1,7 +1,14 @@
 import express from 'express';
 import { verifyAccessToken } from '../../middleware/verify';
-import { getUserDetail } from '../../controllers/users/userDetailController';
+import {
+	editUserDetail,
+	getUserDetail,
+} from '../../controllers/users/userDetailController';
 
 const router = express.Router();
 
-export default router.get('/', verifyAccessToken, getUserDetail);
+router.get('/', verifyAccessToken, getUserDetail);
+
+router.patch('/', verifyAccessToken, editUserDetail);
+
+module.exports = router;
