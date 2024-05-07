@@ -42,8 +42,9 @@ const tokens = {
   },
   
   boxShadow: {
-    "inputShadow": "0px 2px 10px 0px rgba(51, 51, 51, 10%)"
-  }
+    "inputShadow": "0px 2px 10px 0px rgba(51, 51, 51, 10%)",
+    "topShadow": "0px -5px 20px rgba(0, 0, 0, 3%)"
+  },
 }
 
 export default tokens;
