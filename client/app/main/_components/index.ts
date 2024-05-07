@@ -16,8 +16,14 @@ import MoneyTransactionButton from './MoneyTransactionButton';
 import ProfileImageEditor from './ProfileImageEditor';
 import SettingContainer from './SettingContainer';
 import SettingPresentation from './SettingPresentation';
+import PrivateContainer from './PrivateContainer';
+import SaveChangeButton from './SaveChangeButton';
+import PrivatePresentation from './PrivatePresentation';
 
 export {
+  PrivateContainer,
+  PrivatePresentation,
+  SaveChangeButton,
   MyAsset,
   CheckMyBalance,
   MenuPresentation,

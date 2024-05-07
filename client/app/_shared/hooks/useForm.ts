@@ -2,13 +2,16 @@ import { useEffect, useState } from 'react';
 
 import { LoginInfo } from '../../login/_types/data';
 import { CreateAccount } from '../../register/_types/data';
+import { ChangeEmailAndPassword } from '../../main/types/data';
 
-interface UseFormProps<T extends CreateAccount | LoginInfo> {
+interface UseFormProps<
+  T extends CreateAccount | LoginInfo | ChangeEmailAndPassword,
+> {
   initialValue: T;
   onSubmit: (values: T) => void;
 }
 
-const useForm = <T extends CreateAccount | LoginInfo>({
+const useForm = <T extends CreateAccount | LoginInfo | ChangeEmailAndPassword>({
   initialValue,
   onSubmit,
 }: UseFormProps<T>) => {

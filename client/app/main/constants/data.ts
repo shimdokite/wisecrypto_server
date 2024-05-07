@@ -1,5 +1,5 @@
 export const PROFILE_SETTING = {
-  transction_list: {
+  transaction_list: {
     title: 'Daftar Transaksi',
     description: 'Transakasi Yang Anda Miliki',
     image: '/assets/icon/transaction_list.svg',
