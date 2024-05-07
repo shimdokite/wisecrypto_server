@@ -29,7 +29,7 @@ export const matchUserInfomation = async (
 
 		const accessToken = jwt.sign({ type: 'jwt', email }, accessTokenKey, {
 			algorithm: 'HS256',
-			expiresIn: '1m',
+			expiresIn: '30m',
 		});
 
 		const refreshToken = jwt.sign({}, refreshTokenKey, {
@@ -40,7 +40,9 @@ export const matchUserInfomation = async (
 		response.cookie('accessToken', `Bearer ${accessToken}`, { httpOnly: true });
 		response.cookie('refreshToken', refreshToken, { httpOnly: true });
 
-		return response.status(201).send('User logged in successfully.');
+		return response
+			.status(201)
+			.send({ message: 'User logged in successfully.', id: rows[0].id });
 	} catch (error) {
 		return response.status(500).send('Internal Server Error');
 	}
