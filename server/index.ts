@@ -4,7 +4,6 @@ import cookieParser from 'cookie-parser';
 
 import loginRouter from './routes/users/loginRouter';
 import registerRouter from './routes/users/registerRouter';
-import userDetailRouter from './routes/users/userDetailRouter';
 
 const dotenv = require('dotenv').config();
 const app = express();
@@ -12,8 +11,9 @@ const port = 3001;
 const corsOptions = {
 	origin: process.env.CLIENT_ORIGIN,
 	credentials: true,
-	methods: ['GET', 'POST', 'OPTIONS'],
+	methods: ['GET', 'POST', 'PATCH', 'OPTIONS'],
 };
+const userDetailRouter = require('./routes/users/userDetailRouter');
 
 app.get('/', (request: Request, response: Response) => {
 	response.send('Hello World');
@@ -30,3 +30,4 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/accounts/:id', userDetailRouter);
+app.use('/accounts/edit/:id', userDetailRouter);
