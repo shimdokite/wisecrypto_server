@@ -1,1 +1,1 @@
-## wisecrypto
+## wisecrypto-server
