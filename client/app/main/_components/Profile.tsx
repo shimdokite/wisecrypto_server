@@ -1,13 +1,34 @@
-import { ProfileImageEditor, CurrentMyBalance, SettingContainer } from '.';
+'use client';
+
+import useNavigationStore from 'store/navigationStore';
+
+import {
+  ProfileImageEditor,
+  CurrentMyBalance,
+  SettingContainer,
+  PrivateContainer,
+} from '.';
 
 export default function Profile() {
+  const { settingType } = useNavigationStore();
+
+  const renderSetting = (settingType: string) => {
+    if (settingType === 'Privasi') return <PrivateContainer />;
+  };
+
   return (
-    <div className="mx-[15px]">
-      <ProfileImageEditor />
+    <>
+      {settingType ? (
+        <>{renderSetting(settingType)}</>
+      ) : (
+        <div className="mx-[15px]">
+          <ProfileImageEditor />
 
-      <CurrentMyBalance />
+          <CurrentMyBalance />
 
-      <SettingContainer />
-    </div>
+          <SettingContainer />
+        </div>
+      )}
+    </>
   );
 }
