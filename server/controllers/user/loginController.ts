@@ -27,12 +27,14 @@ export const matchUserInfomation = async (
 
 		if (rows.length === 0) return response.status(401).send('Unauthorized');
 
-		const accessToken = jwt.sign({ type: 'jwt', email }, accessTokenKey, {
+		const id = rows[0].id;
+
+		const accessToken = jwt.sign({ type: 'jwt', id, email }, accessTokenKey, {
 			algorithm: 'HS256',
 			expiresIn: '30m',
 		});
 
-		const refreshToken = jwt.sign({}, refreshTokenKey, {
+		const refreshToken = jwt.sign({ id }, refreshTokenKey, {
 			algorithm: 'HS256',
 			expiresIn: '14d',
 		});
@@ -40,9 +42,7 @@ export const matchUserInfomation = async (
 		response.cookie('accessToken', `Bearer ${accessToken}`, { httpOnly: true });
 		response.cookie('refreshToken', refreshToken, { httpOnly: true });
 
-		return response
-			.status(201)
-			.send({ message: 'User logged in successfully.', id: rows[0].id });
+		return response.status(201).send('User logged in successfully.');
 	} catch (error) {
 		return response.status(500).send('Internal Server Error');
 	}

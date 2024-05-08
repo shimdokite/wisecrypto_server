@@ -2,8 +2,9 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
-import loginRouter from './routes/users/loginRouter';
-import registerRouter from './routes/users/registerRouter';
+import loginRouter from './routes/user/loginRouter';
+import registerRouter from './routes/user/registerRouter';
+import marketDetailRouter from './routes/market/marketDetailRouter';
 
 const dotenv = require('dotenv').config();
 const app = express();
@@ -13,7 +14,7 @@ const corsOptions = {
 	credentials: true,
 	methods: ['GET', 'POST', 'PATCH', 'OPTIONS'],
 };
-const userDetailRouter = require('./routes/users/userDetailRouter');
+const userDetailRouter = require('./routes/user/userDetailRouter');
 
 app.get('/', (request: Request, response: Response) => {
 	response.send('Hello World');
@@ -29,5 +30,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
-app.use('/accounts/:id', userDetailRouter);
-app.use('/accounts/edit/:id', userDetailRouter);
+app.use('/accounts', userDetailRouter);
+app.use('/accounts/edit', userDetailRouter);
+app.use('/market', marketDetailRouter);
