@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { createAccount } from '../../controllers/users/registerController';
+import { createAccount } from '../../controllers/user/registerController';
 
 const router = express.Router();
 

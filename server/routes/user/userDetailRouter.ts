@@ -3,7 +3,7 @@ import { verifyAccessToken } from '../../middleware/verify';
 import {
 	editUserDetail,
 	getUserDetail,
-} from '../../controllers/users/userDetailController';
+} from '../../controllers/user/userDetailController';
 
 const router = express.Router();
 

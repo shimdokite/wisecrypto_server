@@ -1,6 +1,6 @@
 import { FieldPacket, RowDataPacket } from 'mysql2';
-import { db } from '../../db';
 import { Request, Response } from 'express';
+import { db } from '../../db';
 
 interface UserDetail extends RowDataPacket {
 	id: string;
@@ -12,7 +12,9 @@ const promisePool = db.promise();
 
 export const getUserDetail = async (request: Request, response: Response) => {
 	const id = request.cookies.userId;
-	const userDetailQuery = 'SELECT id, email FROM User WHERE id=?';
+
+	const userDetailQuery =
+		'SELECT id, name, email, profileImage FROM User WHERE id=?';
 
 	try {
 		const [rows]: [UserDetail[], FieldPacket[]] = await promisePool.query(
@@ -22,7 +24,7 @@ export const getUserDetail = async (request: Request, response: Response) => {
 
 		if (rows.length === 0) return response.status(401).send('Unauthorized');
 
-		return response.status(200).send(rows);
+		return response.status(200).send(...rows);
 	} catch (error) {
 		return response.status(500).send('Internal Server Error');
 	}
