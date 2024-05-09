@@ -54,5 +54,7 @@ export const editUserDetail = async (request: Request, response: Response) => {
 		return response.status(200).send('Resource updated successfully');
 	} catch (error) {
 		return response.status(500).send('Internal Server Error');
+	} finally {
+		return promisePool.end();
 	}
 };

@@ -45,5 +45,7 @@ export const matchUserInfomation = async (
 		return response.status(201).send('User logged in successfully.');
 	} catch (error) {
 		return response.status(500).send('Internal Server Error');
+	} finally {
+		return promisePool.end();
 	}
 };
