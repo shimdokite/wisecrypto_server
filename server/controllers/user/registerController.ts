@@ -31,5 +31,7 @@ export const createAccount = async (request: Request, response: Response) => {
 		return response.status(201).send('User registered successfully');
 	} catch (error) {
 		return response.status(500).send('Internal Server Error');
+	} finally {
+		return promisePool.end();
 	}
 };
