@@ -11,7 +11,7 @@ export const db = mysql.createPool({
 	connectionLimit: 3,
 });
 
-db.getConnection((error) => {
+db.getConnection((error, connection) => {
 	if (error) console.error(error);
 
 	console.log(`Successfully Connecting!`);
