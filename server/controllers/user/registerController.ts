@@ -9,29 +9,31 @@ interface CreateAccount extends RowDataPacket {
 	password: string;
 }
 
-export const createAccount = async (request: Request, response: Response) => {
+export const createAccount = (request: Request, response: Response) => {
 	const promisePool = db.promise();
 	const { email, phoneNumber, password } = request.body;
 	const checkExistingUserQuery = 'SELECT email FROM User WHERE email=?';
 	const registerUserQuery = 'INSERT INTO User SET ?';
 
-	try {
-		const [rows]: [CreateAccount[], FieldPacket[]] = await promisePool.query(
-			checkExistingUserQuery,
-			[email]
-		);
-		if (rows.length) return response.status(400).send('Bad Request');
+	db.getConnection(async (error, connection) => {
+		try {
+			const [rows]: [CreateAccount[], FieldPacket[]] = await promisePool.query(
+				checkExistingUserQuery,
+				[email]
+			);
+			if (rows.length) return response.status(400).send('Bad Request');
 
-		await promisePool.query(registerUserQuery, {
-			email,
-			phoneNumber,
-			password,
-		});
+			await promisePool.query(registerUserQuery, {
+				email,
+				phoneNumber,
+				password,
+			});
 
-		return response.status(201).send('User registered successfully');
-	} catch (error) {
-		return response.status(500).send('Internal Server Error');
-	} finally {
-		return promisePool.end();
-	}
+			return response.status(201).send('User registered successfully');
+		} catch (error) {
+			return response.status(500).send('Internal Server Error');
+		} finally {
+			return db.releaseConnection(connection);
+		}
+	});
 };

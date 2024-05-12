@@ -10,51 +10,56 @@ interface UserDetail extends RowDataPacket {
 
 const promisePool = db.promise();
 
-export const getUserDetail = async (request: Request, response: Response) => {
+export const getUserDetail = (request: Request, response: Response) => {
 	const id = request.cookies.userId;
-
 	const userDetailQuery =
 		'SELECT id, name, email, profileImage FROM User WHERE id=?';
 
-	try {
-		const [rows]: [UserDetail[], FieldPacket[]] = await promisePool.query(
-			userDetailQuery,
-			[id]
-		);
+	db.getConnection(async (error, connection) => {
+		try {
+			const [rows]: [UserDetail[], FieldPacket[]] = await promisePool.query(
+				userDetailQuery,
+				[id]
+			);
 
-		if (rows.length === 0) return response.status(401).send('Unauthorized');
+			if (rows.length === 0) return response.status(401).send('Unauthorized');
 
-		return response.status(200).send(...rows);
-	} catch (error) {
-		return response.status(500).send('Internal Server Error');
-	}
+			return response.status(200).send(...rows);
+		} catch (error) {
+			return response.status(500).send('Internal Server Error');
+		} finally {
+			return db.releaseConnection(connection);
+		}
+	});
 };
 
-export const editUserDetail = async (request: Request, response: Response) => {
+export const editUserDetail = (request: Request, response: Response) => {
 	const id = request.cookies.userId;
 	const { email, previousPassword, changedPassword } = request.body;
 	const checkToPasswordQuery = 'SELECT password FROM User WHERE password=?';
 	const updateEmailAndPasswordQuery =
 		'UPDATE User SET email=?, password=? WHERE id=?';
 
-	try {
-		const [rows]: [UserDetail[], FieldPacket[]] = await promisePool.query(
-			checkToPasswordQuery,
-			[previousPassword]
-		);
+	db.getConnection(async (error, connection) => {
+		try {
+			const [rows]: [UserDetail[], FieldPacket[]] = await promisePool.query(
+				checkToPasswordQuery,
+				[previousPassword]
+			);
 
-		if (rows.length === 0) return response.status(401).send('Unauthorized');
+			if (rows.length === 0) return response.status(401).send('Unauthorized');
 
-		await promisePool.query(updateEmailAndPasswordQuery, [
-			email,
-			changedPassword,
-			id,
-		]);
+			await promisePool.query(updateEmailAndPasswordQuery, [
+				email,
+				changedPassword,
+				id,
+			]);
 
-		return response.status(200).send('Resource updated successfully');
-	} catch (error) {
-		return response.status(500).send('Internal Server Error');
-	} finally {
-		return promisePool.end();
-	}
+			return response.status(200).send('Resource updated successfully');
+		} catch (error) {
+			return response.status(500).send('Internal Server Error');
+		} finally {
+			return db.releaseConnection(connection);
+		}
+	});
 };
