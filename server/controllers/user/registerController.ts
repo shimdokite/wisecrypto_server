@@ -11,7 +11,7 @@ interface CreateAccount extends RowDataPacket {
 
 export const createAccount = (request: Request, response: Response) => {
 	const promisePool = db.promise();
-	const { email, phoneNumber, password } = request.body;
+	const { name, email, phoneNumber, password } = request.body;
 	const checkExistingUserQuery = 'SELECT email FROM User WHERE email=?';
 	const registerUserQuery = 'INSERT INTO User SET ?';
 
@@ -24,6 +24,7 @@ export const createAccount = (request: Request, response: Response) => {
 			if (rows.length) return response.status(400).send('Bad Request');
 
 			await promisePool.query(registerUserQuery, {
+				name,
 				email,
 				phoneNumber,
 				password,
