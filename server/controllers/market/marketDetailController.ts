@@ -4,16 +4,16 @@ import { db } from '../../db';
 
 interface MarketDetail extends RowDataPacket {
 	id: number;
+	name: string;
+	symbol: string;
+	price: string;
 	marketImage: string;
-	marketName: string;
-	baseCoin: string;
-	marketCap: string;
-	percent: string;
+	percent_change_24h: string;
 }
 
 export const getMarketDetail = async (request: Request, response: Response) => {
 	const promisePool = db.promise();
-	const marketDetailQuery = 'SELECT * FROM Market';
+	const marketDetailQuery = 'SELECT * FROM Coin';
 
 	try {
 		const [rows]: [MarketDetail[], FieldPacket[]] = await promisePool.query(
