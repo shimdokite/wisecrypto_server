@@ -12,14 +12,8 @@ const instance = axios.create({
 
 export const getCoinMarketCap = async () => {
 	const response = await instance.get(
-		`/v1/cryptocurrency/listings/latest?limit=10`
+		`/v1/cryptocurrency/listings/latest?limit=1000`
 	);
 
 	return response.data.data;
-};
-
-export const getMarketImage = async (id: string) => {
-	const response = await instance.get(`v2/cryptocurrency/info?id=${id}`);
-
-	return response.data.data[id].logo;
 };
