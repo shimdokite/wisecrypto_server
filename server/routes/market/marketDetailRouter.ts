@@ -1,5 +1,5 @@
 import express from 'express';
-import { getMarketDetail } from '../../controllers/market/marketDetailController_1';
+import { getMarketDetail } from '../../controllers/market/marketDetailController';
 
 const router = express.Router();
 

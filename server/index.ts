@@ -32,4 +32,4 @@ app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/accounts', userDetailRouter);
 app.use('/accounts/edit', userDetailRouter);
-app.use('/market/:limit', marketDetailRouter);
+app.use('/market', marketDetailRouter);
