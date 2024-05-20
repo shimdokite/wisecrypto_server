@@ -49,30 +49,52 @@ export const getMarketDetail = async (request: Request, response: Response) => {
 };
 
 const cronScheduler = async () => {
-	const connection = await promisePool.getConnection();
-	const updateMarketDetailQuery =
-		'UPDATE Coin SET id=?, name=?, symbol=?, price=?, percent_change_24h=?, cmc_rank=? Where id=?';
-
 	cron.schedule('*/5 * * * *', async () => {
+		const connection = await promisePool.getConnection();
+		const queryParams: (number | string)[] = [];
+
 		try {
 			const marketDetail = await getCoinMarketCap();
 
-			for (const market of marketDetail) {
-				const { id, name, symbol, quote, cmc_rank } = market;
-				const { price, percent_change_24h } = quote['USD'];
+			const updateMarketDetailQuery = `
+                UPDATE Coin 
+                SET 
+                    name = CASE id 
+                        ${marketDetail.map(() => `WHEN ? THEN ?`).join(' ')}
+                    END, 
+                    symbol = CASE id 
+                        ${marketDetail.map(() => `WHEN ? THEN ?`).join(' ')}
+                    END, 
+                    price = CASE id 
+                        ${marketDetail.map(() => `WHEN ? THEN ?`).join(' ')}
+                    END, 
+                    percent_change_24h = CASE id 
+                        ${marketDetail.map(() => `WHEN ? THEN ?`).join(' ')}
+                    END, 
+                    cmc_rank = CASE id 
+                        ${marketDetail.map(() => `WHEN ? THEN ?`).join(' ')}
+                    END 
+                WHERE id IN (${marketDetail.map(() => `?`).join(', ')});
+            `;
 
-				await connection.query(updateMarketDetailQuery, [
-					id,
-					name,
-					symbol,
-					price,
-					percent_change_24h,
-					cmc_rank,
-					id,
-				]);
+			marketDetail.forEach((market: MarketDetail) => {
+				queryParams.push(
+					market.id,
+					market.name,
+					market.symbol,
+					market.quote['USD']?.price,
+					market.quote['USD'].percent_change_24h,
+					market.cmc_rank
+				);
+			});
 
-				console.log('5분마다 실행 : All data changed!');
-			}
+			marketDetail.forEach((market: { id: number }) => {
+				queryParams.push(market.id);
+			});
+
+			await connection.query(updateMarketDetailQuery, queryParams);
+
+			console.log('5분마다 실행 : All data changed!');
 		} catch (error) {
 			console.error(error);
 		} finally {
