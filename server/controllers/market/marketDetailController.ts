@@ -49,7 +49,7 @@ export const getMarketDetail = async (request: Request, response: Response) => {
 };
 
 const cronScheduler = async () => {
-	cron.schedule('*/1 * * * *', async () => {
+	cron.schedule('*/5 * * * *', async () => {
 		const connection = await promisePool.getConnection();
 		const updateMarketDetailQuery =
 			'UPDATE Coin SET id=?, name=?, symbol=?, price=?, percent_change_24h=?, cmc_rank=? Where id=?';
