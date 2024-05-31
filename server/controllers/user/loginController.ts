@@ -39,11 +39,11 @@ export const matchUserInfomation = (request: Request, response: Response) => {
 			});
 
 			response.cookie('accessToken', `Bearer ${accessToken}`, {
-				sameSite: 'lax',
+				sameSite: 'none',
 				httpOnly: true,
 			});
 			response.cookie('refreshToken', refreshToken, {
-				sameSite: 'lax',
+				sameSite: 'none',
 				httpOnly: true,
 			});
 
