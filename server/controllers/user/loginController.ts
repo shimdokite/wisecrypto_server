@@ -39,13 +39,9 @@ export const matchUserInfomation = (request: Request, response: Response) => {
 			});
 
 			response.cookie('accessToken', `Bearer ${accessToken}`, {
-				sameSite: 'none',
-				secure: false,
 				httpOnly: true,
 			});
 			response.cookie('refreshToken', refreshToken, {
-				sameSite: 'none',
-				secure: false,
 				httpOnly: true,
 			});
 
