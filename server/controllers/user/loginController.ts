@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { FieldPacket, RowDataPacket } from 'mysql2';
 import jwt from 'jsonwebtoken';
 import { db } from '../../db';
+import { strict } from 'assert';
 
 interface Login extends RowDataPacket {
 	email: string;
@@ -38,9 +39,13 @@ export const matchUserInfomation = (request: Request, response: Response) => {
 			});
 
 			response.cookie('accessToken', `Bearer ${accessToken}`, {
+				sameSite: 'strict',
 				httpOnly: true,
 			});
-			response.cookie('refreshToken', refreshToken, { httpOnly: true });
+			response.cookie('refreshToken', refreshToken, {
+				sameSite: 'strict',
+				httpOnly: true,
+			});
 
 			return response.status(201).send('User logged in successfully.');
 		} catch (error) {

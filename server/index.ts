@@ -33,3 +33,6 @@ app.use('/register', registerRouter);
 app.use('/accounts', userDetailRouter);
 app.use('/accounts/edit', userDetailRouter);
 app.use('/market', marketDetailRouter);
+app.use('/test', (request: Request, response: Response) => {
+	response.send('Success connection server!');
+});
