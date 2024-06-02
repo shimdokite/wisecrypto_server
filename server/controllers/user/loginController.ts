@@ -40,11 +40,11 @@ export const matchUserInfomation = (request: Request, response: Response) => {
 
 			response.cookie('accessToken', `Bearer ${accessToken}`, {
 				httpOnly: true,
-				domain: '.wisecrypto-server.shop',
+				domain: 'api.wisecrypto-server.shop',
 			});
 			response.cookie('refreshToken', refreshToken, {
 				httpOnly: true,
-				domain: '.wisecrypto-server.shop',
+				domain: 'api.wisecrypto-server.shop',
 			});
 
 			return response.status(201).send('User logged in successfully.');
