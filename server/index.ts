@@ -8,7 +8,7 @@ import marketDetailRouter from './routes/market/marketDetailRouter';
 
 const dotenv = require('dotenv').config();
 const app = express();
-const port = 80;
+const port = 3001;
 const corsOptions = {
 	origin: process.env.CLIENT_ORIGIN,
 	credentials: true,
