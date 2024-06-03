@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { FieldPacket, RowDataPacket } from 'mysql2';
 import jwt from 'jsonwebtoken';
 import { db } from '../../db';
-import { strict } from 'assert';
 
 interface Login extends RowDataPacket {
 	email: string;
@@ -40,11 +39,11 @@ export const matchUserInfomation = (request: Request, response: Response) => {
 
 			response.cookie('accessToken', `Bearer ${accessToken}`, {
 				httpOnly: true,
-				domain: 'wisecrypto-server.shop',
+				domain: '.wisecrypto-server.shop',
 			});
 			response.cookie('refreshToken', refreshToken, {
 				httpOnly: true,
-				domain: 'wisecrypto-server.shop',
+				domain: '.wisecrypto-server.shop',
 			});
 
 			return response.status(201).send('User logged in successfully.');

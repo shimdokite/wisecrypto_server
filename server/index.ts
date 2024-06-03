@@ -12,7 +12,7 @@ const port = 3001;
 const corsOptions = {
 	origin: process.env.CLIENT_ORIGIN,
 	credentials: true,
-	methods: ['GET', 'POST', 'PATCH', 'OPTIONS'],
+	methods: ['GET', 'HEAD', 'PUT', 'POST', 'PATCH', 'OPTIONS', 'DELETE'],
 };
 const userDetailRouter = require('./routes/user/userDetailRouter');
 
