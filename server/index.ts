@@ -10,8 +10,9 @@ const dotenv = require('dotenv').config();
 const app = express();
 const port = 3001;
 const corsOptions = {
-	origin: true,
+	origin: process.env.CLIENT_ORIGIN,
 	credentials: true,
+	optionsSuccessStatus: 200,
 	methods: ['GET', 'HEAD', 'PUT', 'POST', 'PATCH', 'OPTIONS', 'DELETE'],
 };
 const userDetailRouter = require('./routes/user/userDetailRouter');
